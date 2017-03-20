@@ -32,6 +32,13 @@ public class InventoryTest {
 		assertEquals(0,inv.getChocolate());
 	}
 	@Test
+	public void testSetChocolate2() {
+		inv.setChocolate(0);
+		assertEquals(0,inv.getChocolate());
+	}
+	
+	
+	@Test
 	public void testSetCoffee(){
 		inv.setCoffee(-1);
 		assertEquals(0,inv.getCoffee());
@@ -57,8 +64,24 @@ public class InventoryTest {
 	}
 	
 	@Test
+	public void testEnoughIngredients2(){
+		inv.setChocolate(5);
+		inv.setCoffee(6);
+		inv.setMilk(5);
+		inv.setSugar(5);
+		
+		assertTrue(inv.enoughIngredients(r1));
+	}
+	
+	@Test
 	public void testToString(){
 		assertNotNull("", inv.toString());
+	}
+	
+	@Test
+	public void testSetMilk2(){
+		inv.setMilk(0);
+		assertEquals(0,inv.getMilk());
 	}
 
 }

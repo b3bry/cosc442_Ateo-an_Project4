@@ -22,7 +22,7 @@ public class CoffeeMakerTest extends TestCase {
 		r1.setAmtCoffee(6);
 		r1.setAmtMilk(1);
 		r1.setAmtSugar(1);
-		r1.setAmtChocolate(0);
+		r1.setAmtChocolate(1);
 	}
 
 	public void testAddRecipe1() {
@@ -107,12 +107,36 @@ public class CoffeeMakerTest extends TestCase {
 		assertTrue(cm.addInventory(1, 2, 0, 4));
 	}
 	
-	public void testAddInventory2(){ //seems to be not right
-		assertFalse(cm.addInventory(1, 2, 3, 4));
+	public void testAddInventory2(){
+		assertTrue(cm.addInventory(1, 2, 3, 4));
 	}
 	
 	public void testAddInventory3(){
 		assertFalse(cm.addInventory(-1, -1, -1, -1));
+	}
+	
+	public void testAddInventory4(){
+		assertTrue(cm.addInventory(0,0,0,0));
+	}
+	
+	public void testAddInventory5(){
+		cm.addInventory(1, 1, 0, 1);
+		assertEquals(16,cm.checkInventory().getCoffee());
+	}
+	
+	public void testAddInventory6(){
+		cm.addInventory(1, 1, 0, 1);
+		assertEquals(16,cm.checkInventory().getMilk());
+	}
+	
+	public void testAddInventory7(){
+		cm.addInventory(1, 1, 0, 1);
+		assertEquals(16,cm.checkInventory().getChocolate());
+	}
+	
+	public void testAddInventory8(){
+		cm.addInventory(1, 1, 1, 1);
+		assertEquals(16,cm.checkInventory().getSugar());
 	}
 	
 	public void testCheckInventory(){
@@ -127,6 +151,33 @@ public class CoffeeMakerTest extends TestCase {
 	public void testPurchaseBeverage3(){
 		cm.addRecipe(r1);
 		assertEquals(30,cm.makeCoffee(r1, 30));
+	}
+	
+	public void testPurchaseBeverage4(){
+		cm.addRecipe(r1);
+		assertEquals(0,cm.makeCoffee(r1, 50));
+	}
+	
+	public void testPurchaseBeverage5(){
+		cm.addRecipe(r1);
+		cm.makeCoffee(r1, 50);
+		assertEquals(15+r1.getAmtCoffee(),cm.checkInventory().getCoffee());
+	}
+	
+	public void testPurchaseBeverage6(){
+		cm.addRecipe(r1);
+		cm.makeCoffee(r1, 50);
+		assertEquals(15-r1.getAmtChocolate(),cm.checkInventory().getChocolate());
+	}
+	public void testPurchaseBeverage7(){
+		cm.addRecipe(r1);
+		cm.makeCoffee(r1, 50);
+		assertEquals(15-r1.getAmtMilk(),cm.checkInventory().getMilk());
+	}
+	public void testPurchaseBeverage8(){
+		cm.addRecipe(r1);
+		cm.makeCoffee(r1, 50);
+		assertEquals(15-r1.getAmtSugar(),cm.checkInventory().getSugar());
 	}
 	
 	public void testGetRecipeForName(){

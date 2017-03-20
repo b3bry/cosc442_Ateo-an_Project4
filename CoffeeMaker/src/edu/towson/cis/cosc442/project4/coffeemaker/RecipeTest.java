@@ -57,6 +57,20 @@ public class RecipeTest {
 	}
 	
 	@Test
+	public void testEquals2(){
+		Recipe r2 = new Recipe();
+		r2.setName("Coffee");
+		assertTrue(r2.equals(r1));
+	}
+	
+	@Test
+	public void testEquals3(){
+		Recipe r2 = new Recipe();
+		r2.setName("Coffee2");
+		assertFalse(r2.equals(r1));
+	}
+	
+	@Test
 	public void testToString(){
 		assertNotNull("",r1.toString());
 	}
