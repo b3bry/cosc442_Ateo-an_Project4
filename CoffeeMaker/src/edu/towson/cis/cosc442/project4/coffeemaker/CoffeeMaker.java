@@ -49,8 +49,7 @@ public class CoffeeMaker {
         	if(emptySpot != -1) {
         		recipeArray[emptySpot] = r;
         		recipeFull[emptySpot] = true;
-        	}
-        	else {
+        	}else {
         		canAddRecipe = false;
         	}
         }
@@ -58,7 +57,7 @@ public class CoffeeMaker {
     }
 	
 	private int getEmpty(){
-		int result = 0;
+		int result = -1;
     	for(int i = 0; i < NUM_RECIPES; i++) {
     		if(!recipeFull[i]) {
     			result = i;
